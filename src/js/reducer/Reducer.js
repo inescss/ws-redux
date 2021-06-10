@@ -1,4 +1,5 @@
-import { ADD_TASK, COMPLETE_TASK, DELETE_TASK, EDIT_TASK } from "../types/Index";
+
+import { ADD_TASK, COMPLETE_TASK, DELETE_TASK, EDIT_TASK, FILTER_TASK } from "../type/Index";
 
 const initialState = {
 
@@ -24,13 +25,20 @@ const initialState = {
 const Reducer = (state=initialState,{type,payload}) => {
     switch(type){
         case ADD_TASK:
-      return { ...state, taskList: [...state.taskList, payload] };
+      return { ...state, taskList:[...state.taskList, payload] };
 
     case DELETE_TASK:
       return {
         ...state,
         taskList: state.taskList.filter((todo) => todo.id !== payload),
       };
+    case FILTER_TASK:
+      return {
+        ...state,
+        taskList: state.taskList.filter((todo) =>
+            todo.task.toUpperCase().includes(payload.toUpperCase()),
+        ),
+    }
 
     case COMPLETE_TASK:
       return {

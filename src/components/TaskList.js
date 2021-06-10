@@ -3,10 +3,12 @@ import { useSelector } from 'react-redux'
 import TaskItem from './TaskItem'
 
 const TaskList = () => {
-    const taskList = useSelector(state => state.taskList)
+    const taskList = useSelector(state => state.Reducer.taskList)
     return (
         <div>
+            
               {
+            
                 taskList.map(todo => <TaskItem todo={todo} key={todo.id}/>)
             }
         </div>
